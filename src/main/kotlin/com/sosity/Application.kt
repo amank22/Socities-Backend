@@ -2,7 +2,7 @@ package com.sosity
 
 import io.ktor.server.application.*
 import com.sosity.plugins.*
-import io.ktor.server.tomcat.*
+import io.ktor.server.netty.*
 
 fun main(args: Array<String>): Unit =
     EngineMain.main(args)

@@ -7,25 +7,16 @@ val h2_version : String by project
 plugins {
     kotlin("jvm") version "1.8.10"
     id("io.ktor.plugin") version "2.2.4"
-    id("org.gretty") version "3.0.6"
-    id("war")
     id("org.jetbrains.kotlin.plugin.serialization") version "1.8.10"
 }
 ext {
     this.set("development", true)
 }
 
-gretty {
-    servletContainer = "tomcat9"
-    contextPath = "/"
-    logbackConfigFile = "src/main/resources/logback.xml"
-    consoleLogEnabled = true
-}
-
 group = "com.sosity"
 version = "0.0.1"
 application {
-    mainClass.set("io.ktor.server.tomcat.EngineMain")
+    mainClass.set("io.ktor.server.netty.EngineMain")
 
     val isDevelopment: Boolean = project.ext.has("development")
     applicationDefaultJvmArgs = listOf("-Dio.ktor.development=$isDevelopment")
@@ -52,7 +43,7 @@ dependencies {
     implementation("io.ktor:ktor-server-status-pages-jvm:$ktor_version")
     implementation("io.ktor:ktor-server-resources:$ktor_version")
     implementation("io.ktor:ktor-server-auth-jvm:$ktor_version")
-    implementation("io.ktor:ktor-server-tomcat:$ktor_version")
+    implementation("io.ktor:ktor-server-netty:$ktor_version")
     implementation("io.ktor:ktor-server-double-receive:$ktor_version")
     implementation("ch.qos.logback:logback-classic:$logback_version")
     testImplementation("io.ktor:ktor-server-tests-jvm:$ktor_version")
