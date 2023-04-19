@@ -27,7 +27,7 @@ fun Routing.personRoutes() {
             return@post
         }
         try {
-            PersonSave.pdf(person)
+//            PersonSave.pdf(person)
             val insertedId = PersonSchema.insert(person).insertedId?.asObjectId()?.value?.toString().orEmpty()
             call.respond(
                 HttpStatusCode.Created,
